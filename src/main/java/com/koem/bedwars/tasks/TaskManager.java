@@ -13,7 +13,7 @@ public class TaskManager {
 
     public TaskManager(BW plugin) {
         this.plugin = plugin;
-        generalBukkitTask = Bukkit.getScheduler().runTaskTimer(plugin, new GeneralTask(plugin), 0 ,20);
+        generalBukkitTask = Bukkit.getScheduler().runTaskTimer(plugin, new GeneralTask(plugin), 0, 20);
     }
 
     public BukkitTask getGeneralBukkitTask() {

@@ -1,17 +1,16 @@
 package com.koem.bedwars.listeners;
 
 import com.koem.bedwars.BW;
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 /**
  * Created by koem on 08/07/2017.
  */
-public class EntityDamageByEntityListener {
+
+public class EntityDamageByEntityListener implements Listener {
 
     private final BW plugin;
 
@@ -21,26 +20,22 @@ public class EntityDamageByEntityListener {
 
     @EventHandler
     void onEntityDamageByEntityEvent(EntityDamageByEntityEvent e) {
-        if(!(e.getEntity() instanceof Player)){
+        if (!(e.getEntity() instanceof Player)) {
             return;
         }
 
         Player p = ((Player) e.getEntity());
 
-        if(p.getHealth() - e.getDamage() >= 1.0) {
+        if (!(e.getDamager() instanceof Player)) {
             return;
         }
 
-        e.setCancelled(true);
-        //TODO: send eq to damager
-        Bukkit.broadcastMessage(p.getDisplayName() + " has been killed by " + e.getDamager().getName()); //TODO: check for void
-
-        p.setGameMode(GameMode.SPECTATOR);
-        p.teleport(new Location(p.getWorld(), 0, 70, 0)); //TODO: get center map location
-
-        //TODO: wait 5s and chech for teams bed
-
-
+        Player damager = (Player) e.getDamager();
+        if (plugin.getPlayerManager().isTheSameTeam(p, damager)) { //check if same team
+            e.setCancelled(true);
+        }
+        System.out.println(p.getName() + "s last damager: " + damager.getName()); //TODO:TEST
+        plugin.getPlayerManager().getBWPlayer(p).setLastDamager(damager);
 
     }
 }
