@@ -8,10 +8,10 @@ import org.bukkit.configuration.file.FileConfiguration;
 public class Settings {
 
     private int maxPlayers = 16;
-    private final BW plugin;
+    private final BedWars plugin;
     private FileConfiguration cfg;
 
-    public Settings(BW plugin) {
+    public Settings(BedWars plugin) {
         this.plugin = plugin;
         cfg = plugin.getConfig();
     }

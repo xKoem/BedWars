@@ -1,6 +1,6 @@
 package com.koem.bedwars.listeners;
 
-import com.koem.bedwars.BW;
+import com.koem.bedwars.BedWars;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
@@ -14,9 +14,9 @@ import java.util.Iterator;
  */
 public class EntityExplodeListener implements Listener{
 
-    private final BW plugin;
+    private final BedWars plugin;
 
-    public EntityExplodeListener(BW plugin) {
+    public EntityExplodeListener(BedWars plugin) {
         this.plugin = plugin;
     }
 

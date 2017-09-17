@@ -1,6 +1,6 @@
 package com.koem.bedwars.player;
 
-import com.koem.bedwars.BW;
+import com.koem.bedwars.BedWars;
 
 import java.util.HashMap;
 
@@ -9,10 +9,10 @@ import java.util.HashMap;
  */
 public class TeamManager {
 
-    private final BW plugin;
+    private final BedWars plugin;
     private HashMap<TEAM, Integer> team;
 
-    public TeamManager(BW plugin, short teamSize) {
+    public TeamManager(BedWars plugin, short teamSize) {
         this.plugin = plugin;
         generateTeam(TEAM.RED);
     }

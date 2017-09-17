@@ -1,6 +1,6 @@
 package com.koem.bedwars.listeners;
 
-import com.koem.bedwars.BW;
+import com.koem.bedwars.BedWars;
 import com.koem.bedwars.tasks.GameTask;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -13,9 +13,9 @@ import org.bukkit.event.player.PlayerQuitEvent;
  */
 public class PlayerQuitListener implements Listener {
 
-    private final BW plugin;
+    private final BedWars plugin;
 
-    public PlayerQuitListener(BW plugin) {
+    public PlayerQuitListener(BedWars plugin) {
         this.plugin = plugin;
     }
 

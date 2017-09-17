@@ -1,15 +1,15 @@
 package com.koem.bedwars.tasks;
 
-import com.koem.bedwars.BW;
+import com.koem.bedwars.BedWars;
 
 /**
  * Created by koem on 07/07/2017.
  */
 public class GeneralTask implements Runnable {
 
-    private BW plugin;
+    private BedWars plugin;
 
-    public GeneralTask(BW plugin) {
+    public GeneralTask(BedWars plugin) {
         this.plugin = plugin;
     }
 

@@ -1,18 +1,16 @@
 package com.koem.bedwars.itemdroppers;
 
-import com.koem.bedwars.BW;
-
-import java.util.HashMap;
+import com.koem.bedwars.BedWars;
 
 /**
  * Created by koem on 08/07/2017.
  */
 public class IslandDroppersManager {
 
-    private final BW plugin;
+    private final BedWars plugin;
     private IslandDropper[] islandDroppers;
 
-    public IslandDroppersManager(BW plugin) {
+    public IslandDroppersManager(BedWars plugin) {
         this.plugin = plugin;
     }
 

@@ -1,6 +1,6 @@
 package com.koem.bedwars.itemdroppers;
 
-import com.koem.bedwars.BW;
+import com.koem.bedwars.BedWars;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -13,13 +13,13 @@ import org.bukkit.inventory.ItemStack;
  */
 public class IslandDropper {
 
-    private final BW plugin;
+    private final BedWars plugin;
     private final Location location;
     private final IslandDroppersManager.DROPPERTYPE dropperType;
     private final World world;
     private byte level;
 
-    public IslandDropper(BW plugin, Location location, IslandDroppersManager.DROPPERTYPE dropperType, World world) {
+    public IslandDropper(BedWars plugin, Location location, IslandDroppersManager.DROPPERTYPE dropperType, World world) {
         this.plugin = plugin;
         this.location = location;
         this.dropperType = dropperType;

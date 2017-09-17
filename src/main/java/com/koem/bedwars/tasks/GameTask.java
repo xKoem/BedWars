@@ -1,20 +1,20 @@
 package com.koem.bedwars.tasks;
 
 
-import com.koem.bedwars.BW;
+import com.koem.bedwars.BedWars;
 
 /**
  * Created by koem on 08/07/2017.
  */
 public class GameTask {
 
-    private final BW plugin;
+    private final BedWars plugin;
 
     public enum GAMESTATE{WAITING, COUNTDOWN, FIGHT}
 
     private GAMESTATE gameState;
 
-    public GameTask(BW plugin) {
+    public GameTask(BedWars plugin) {
         this.plugin = plugin;
         this.gameState = GAMESTATE.WAITING;
     }

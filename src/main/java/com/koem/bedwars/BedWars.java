@@ -13,7 +13,7 @@ import java.util.logging.Level;
 /**
  * Created by koem on 07/07/2017.
  */
-public class BW extends JavaPlugin {
+public class BedWars extends JavaPlugin {
 
     private Settings settings;
     private TaskManager taskManager;
@@ -24,6 +24,7 @@ public class BW extends JavaPlugin {
     @Override
     public void onEnable() {
         registerListeners();
+
         settings = new Settings(this);
         taskManager = new TaskManager(this);
         playerManager = new PlayerManager(this);

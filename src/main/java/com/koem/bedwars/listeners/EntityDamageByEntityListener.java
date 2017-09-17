@@ -1,6 +1,6 @@
 package com.koem.bedwars.listeners;
 
-import com.koem.bedwars.BW;
+import com.koem.bedwars.BedWars;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,9 +12,9 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 public class EntityDamageByEntityListener implements Listener {
 
-    private final BW plugin;
+    private final BedWars plugin;
 
-    public EntityDamageByEntityListener(BW plugin) {
+    public EntityDamageByEntityListener(BedWars plugin) {
         this.plugin = plugin;
     }
 
@@ -30,10 +30,15 @@ public class EntityDamageByEntityListener implements Listener {
             return;
         }
 
+        //damager and player instance of Player
+
         Player damager = (Player) e.getDamager();
+
         if (plugin.getPlayerManager().isTheSameTeam(p, damager)) { //check if same team
             e.setCancelled(true);
         }
+
+
         System.out.println(p.getName() + "s last damager: " + damager.getName()); //TODO:TEST
         plugin.getPlayerManager().getBWPlayer(p).setLastDamager(damager);
 

@@ -1,6 +1,6 @@
 package com.koem.bedwars.listeners;
 
-import com.koem.bedwars.BW;
+import com.koem.bedwars.BedWars;
 import com.koem.bedwars.tasks.GameTask;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -15,9 +15,9 @@ import org.bukkit.event.entity.EntityDamageEvent;
  */
 public class EntityDamageListener implements Listener {
 
-    private final BW plugin;
+    private final BedWars plugin;
 
-    public EntityDamageListener(BW plugin) {
+    public EntityDamageListener(BedWars plugin) {
         this.plugin = plugin;
     }
 
@@ -33,7 +33,6 @@ public class EntityDamageListener implements Listener {
         }
 
         Player p = (Player) e.getEntity();
-
 
         System.out.println(p.getHealth() - e.getDamage());
 

@@ -1,7 +1,10 @@
 package com.koem.bedwars.listeners;
 
-import com.koem.bedwars.BW;
+import com.koem.bedwars.BedWars;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -12,14 +15,24 @@ import org.bukkit.event.block.BlockPlaceEvent;
  */
 public class PlaceBreakListener implements Listener {
 
-    private final BW plugin;
+    private final BedWars plugin;
 
-    public PlaceBreakListener(BW plugin) {
+    public PlaceBreakListener(BedWars plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler
     void onPlace(BlockPlaceEvent e) {
+        if(e.getBlock().getType().equals(Material.TNT)) {
+//            Location l = e.getBlock().getLocation();
+//            World w = e.getBlock().getWorld();
+//            w.spawnEntity(l, EntityType.PRIMED_TNT);
+            Block b = e.getBlock();
+            e.getBlock().setType(Material.AIR);
+            Entity ent = b.getWorld().spawn(b.getLocation(), TNTPrimed.class);
+            ((TNTPrimed) ent).setFuseTicks(80); //TODO: 60 for vip
+        }
+
         if (e.getBlock().getType().equals(Material.BED)) {
             e.setCancelled(true);
             //TODO: maybe vips only???

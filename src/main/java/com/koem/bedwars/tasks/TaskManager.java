@@ -1,6 +1,6 @@
 package com.koem.bedwars.tasks;
 
-import com.koem.bedwars.BW;
+import com.koem.bedwars.BedWars;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -8,10 +8,10 @@ import org.bukkit.scheduler.BukkitTask;
  * Created by koem on 07/07/2017.
  */
 public class TaskManager {
-    private final BW plugin;
+    private final BedWars plugin;
     private BukkitTask generalBukkitTask;
 
-    public TaskManager(BW plugin) {
+    public TaskManager(BedWars plugin) {
         this.plugin = plugin;
         generalBukkitTask = Bukkit.getScheduler().runTaskTimer(plugin, new GeneralTask(plugin), 0, 20);
     }
