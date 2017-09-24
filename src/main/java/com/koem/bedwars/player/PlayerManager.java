@@ -21,15 +21,24 @@ public class PlayerManager {
         players = new HashMap<>();
     }
 
-    public void loadPlayers() { //TODO: load players on game start
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            //TODO: check for team select
-            if(p.getName().toLowerCase().equals("koem"))
-                players.put(p, new BWPlayer(p, TEAM.RED));
-            else
-                players.put(p, new BWPlayer(p, TEAM.BLUE));
-        }
+//    public void loadPlayers() { //TODO: load players on game start
+//        for (Player p : Bukkit.getOnlinePlayers()) {
+//            //TODO: check for team select
+//            if(p.getName().toLowerCase().equals("koem"))
+//                players.put(p, new BWPlayer(p, TEAM.RED));
+//            else
+//                players.put(p, new BWPlayer(p, TEAM.BLUE));
+//        }
+//    }
+
+    public void createPlayer(Player p) {
+        players.put(p, new BWPlayer(p));
     }
+
+    public void removePlayer(Player p) {
+        players.remove(p);
+    }
+
 
     public boolean isTheSameTeam(Player p1, Player p2) {
         if(!players.containsKey(p1)) {

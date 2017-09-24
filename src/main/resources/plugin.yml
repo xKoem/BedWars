@@ -2,3 +2,10 @@ name: BedWars
 version: 1.0
 main: com.koem.bedwars.BedWars
 author: Koem
+commands:
+  team:
+    description: select team
+    aliases: [t]
+  bedwars:
+    description: BedWars admin command
+    alieses: [bw]

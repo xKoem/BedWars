@@ -15,13 +15,16 @@ public class BWPlayer {
     private short deaths;
     private short finals;
 
-    public BWPlayer(Player p, TeamManager.TEAM team) {
+    public BWPlayer(Player p) {
         this.p = p;
-        this.team = team;
         this.lastDamager = null;
         this.kills = 0;
         this.deaths = 0;
         this.finals = 0;
+    }
+
+    public void setTeam(TeamManager.TEAM team) {
+        this.team = team;
     }
 
     public void setLastDamager(Player p) {

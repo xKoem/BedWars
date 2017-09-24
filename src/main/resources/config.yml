@@ -1,0 +1,6 @@
+TEAM_CMD_ERROR_BAD_USAGE: §4Poprawne uzycie /team red, blue, yellow, green
+TEAM_CMD_ERROR_NOT_ALLOWED: §4Nie możesz użyć tej komendy
+BED_WARS_CMD_ERROR_BAD_USAGE: §4Poprawne uzycie uj wi jak xDD
+CMD_ERROR_NO_ACCESS: §4Nie masz uprawnien
+TEAM_JOINED: $3Dolaczyles do Team %team%
+TEAM_SIZE: 4

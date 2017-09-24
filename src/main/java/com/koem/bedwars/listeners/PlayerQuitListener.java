@@ -25,6 +25,10 @@ public class PlayerQuitListener implements Listener {
         Player p = e.getPlayer();
         Bukkit.broadcastMessage(p.getDisplayName() + " left");
 
+        if(!(plugin.getGameTask().getGameState().equals(GameTask.GAMESTATE.FIGHT))) {
+            plugin.getPlayerManager().removePlayer(p);
+        }
+
         if(plugin.getGameTask().getGameState().equals(GameTask.GAMESTATE.COUNTDOWN)) {
             if(Bukkit.getOnlinePlayers().size() < 10) {
                 plugin.getGameTask().setGameState(GameTask.GAMESTATE.WAITING);

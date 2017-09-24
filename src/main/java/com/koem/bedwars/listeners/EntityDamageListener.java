@@ -23,6 +23,7 @@ public class EntityDamageListener implements Listener {
 
     @EventHandler
     void onEntityDamage(EntityDamageEvent e) {
+
         if (!(e.getEntity() instanceof Player)) {
             return;
         }
@@ -46,10 +47,17 @@ public class EntityDamageListener implements Listener {
         Bukkit.broadcastMessage(p.getDisplayName() + " has been killed by " + e.getCause()); //TODO:TEST check for void
 
         p.setGameMode(GameMode.SPECTATOR);
-        p.teleport(new Location(p.getWorld(), 0, 70, 0)); //TODO: get center map location
-        p.setHealth(20.0);
+        p.teleport(new Location(p.getWorld(), 0, 95, 0)); //TODO: get center map location
+        p.setHealth(20.0d);
+        p.setFoodLevel(20);
 
-        //TODO: wait 5s and chech for teams bed
+
+
+
+        //TODO: check for bed
+        //TODO: wait 5s
+        //TODO: respawn
+
 
 
     }

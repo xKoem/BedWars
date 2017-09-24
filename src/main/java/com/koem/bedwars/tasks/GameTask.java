@@ -16,7 +16,8 @@ public class GameTask {
 
     public GameTask(BedWars plugin) {
         this.plugin = plugin;
-        this.gameState = GAMESTATE.WAITING;
+        //this.gameState = GAMESTATE.WAITING;   //TODO: change for that
+        this.gameState = GAMESTATE.FIGHT;   ////////
     }
 
     public void setGameState(GAMESTATE gameState) {
@@ -25,6 +26,14 @@ public class GameTask {
 
     public GAMESTATE getGameState() {
         return this.gameState;
+    }
+
+    public GAMESTATE checkGAMESTATE(String str) {
+        for (GAMESTATE t : GAMESTATE.values()) {
+            if (t.name().equalsIgnoreCase(str))
+                return t;
+        }
+        return null;
     }
 
 
