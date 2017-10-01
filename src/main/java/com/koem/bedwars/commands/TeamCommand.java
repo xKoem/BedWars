@@ -3,6 +3,7 @@ package com.koem.bedwars.commands;
 import com.koem.bedwars.BedWars;
 import com.koem.bedwars.player.TeamManager;
 import com.koem.bedwars.tasks.GameTask;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -44,7 +45,7 @@ public class TeamCommand implements CommandExecutor{
         }
 
         plugin.getPlayerManager().getBWPlayer(p).setTeam(t);
-
+        plugin.getPlayerManager().setPlayerColor(p, t);
 
         p.sendMessage(plugin.getSettings().getCfg().getString("TEAM_JOINED").replace("%team%", t.name()));
 

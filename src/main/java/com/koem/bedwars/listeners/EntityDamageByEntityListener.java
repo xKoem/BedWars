@@ -36,6 +36,7 @@ public class EntityDamageByEntityListener implements Listener {
 
         if (plugin.getPlayerManager().isTheSameTeam(p, damager)) { //check if same team
             e.setCancelled(true);
+            return;
         }
 
 

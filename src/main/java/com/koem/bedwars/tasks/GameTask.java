@@ -9,6 +9,8 @@ import com.koem.bedwars.BedWars;
 public class GameTask {
 
     private final BedWars plugin;
+    private byte countdownTime;
+    private int gameTime;
 
     public enum GAMESTATE{WAITING, COUNTDOWN, FIGHT}
 
@@ -16,8 +18,11 @@ public class GameTask {
 
     public GameTask(BedWars plugin) {
         this.plugin = plugin;
-        //this.gameState = GAMESTATE.WAITING;   //TODO: change for that
-        this.gameState = GAMESTATE.FIGHT;   ////////
+        countdownTime = 20;
+        gameTime = 0;
+
+        this.gameState = GAMESTATE.WAITING;
+        //this.gameState = GAMESTATE.FIGHT;
     }
 
     public void setGameState(GAMESTATE gameState) {
@@ -36,5 +41,19 @@ public class GameTask {
         return null;
     }
 
+    public byte getCountdownTime() {
+        return countdownTime;
+    }
 
+    public int getGameTime() {
+        return gameTime;
+    }
+
+    public void setCountdownTime(byte countdownTime) {
+        this.countdownTime = countdownTime;
+    }
+
+    public void incGameTime() {
+        this.gameTime++;
+    }
 }

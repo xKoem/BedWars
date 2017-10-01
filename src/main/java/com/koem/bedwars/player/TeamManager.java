@@ -1,7 +1,9 @@
 package com.koem.bedwars.player;
 
 import com.koem.bedwars.BedWars;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 
@@ -43,4 +45,37 @@ public class TeamManager {
         return null;
     }
 
+    public Team getTeam(TEAM t) {
+        return teamList.get(t);
+    }
+
+    public TEAM getTheSmallestTeam() {
+        Team smallestTeam = null;
+        byte smallestValue = 4;
+        for (Team t: teamList.values()) {
+            if(null == smallestTeam) {
+                smallestTeam = t;
+                continue;
+            }
+            if(t.getTeamPlayers() < smallestValue) {
+                smallestTeam = t;
+                smallestValue = t.getTeamPlayers();
+            }
+        }
+
+        return smallestTeam.getTeam();
+    }
+
+    public void randomTeams() {
+        HashMap<Player, BWPlayer> players = plugin.getPlayerManager().getBWPlayers();
+        for (BWPlayer p: players.values()) {
+            if(null != p.getTeam()) {
+                continue;
+            }
+            p.setTeam(getTheSmallestTeam());
+
+            plugin.getPlayerManager().setPlayerColor(p.getPlayer(), p.getTeam());
+
+        }
+    }
 }

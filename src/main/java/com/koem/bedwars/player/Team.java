@@ -28,15 +28,15 @@ public class Team {
 
 
 
-    private boolean isTeamFull() {
+    public boolean isTeamFull() {
         return teamPlayers >= maxTeamPlayers;
     }
 
-    private void addPlayer() {
+    public void addPlayer() {
         teamPlayers++;
     }
 
-    private void removePlayer() {
+    public void removePlayer() {
         teamPlayers--;
     }
 
@@ -56,8 +56,13 @@ public class Team {
         this.teamUpgrades = teamUpgrades;
     }
 
+    public byte getTeamPlayers() {
+        return teamPlayers;
+    }
+
     public Location getBedLocation() {
         return bedLocation;
     }
+
 }
 

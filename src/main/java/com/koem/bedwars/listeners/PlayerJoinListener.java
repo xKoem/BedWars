@@ -24,11 +24,12 @@ public class PlayerJoinListener implements Listener {
         e.setJoinMessage(null);
         Player p = e.getPlayer();
         Bukkit.broadcastMessage(e.getPlayer().getDisplayName() + " dolaczyl");
-        if(Bukkit.getOnlinePlayers().size() > 2) {
-             //TODO: begin countdown;
-        }
 
         plugin.getPlayerManager().createPlayer(p);
+
+        if(Bukkit.getOnlinePlayers().size() > 1) {
+            plugin.getGameTask().setGameState(GameTask.GAMESTATE.COUNTDOWN);
+        }
 
 
     }

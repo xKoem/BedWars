@@ -2,6 +2,7 @@ package com.koem.bedwars.commands;
 
 
 import com.koem.bedwars.BedWars;
+import com.koem.bedwars.player.BWPlayer;
 import com.koem.bedwars.tasks.GameTask;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -44,7 +45,17 @@ public class BedWarsCommand implements CommandExecutor{
                 }
 
                 plugin.getGameTask().setGameState(gs);
+                return true;
 
+            }
+        }
+
+        if(args[0].equalsIgnoreCase("teamlist")){
+            if(!(sender.hasPermission("BW.GetTeams"))) {
+                return true;
+            }
+            for(BWPlayer p :plugin.getPlayerManager().getBWPlayers().values()) {
+                System.out.println(p.getPlayer().getName() + " " +p.getTeam() + " : " + plugin.getTeamManager().getTeam(p.getTeam()).getTeamPlayers());
             }
         }
 

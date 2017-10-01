@@ -3,6 +3,7 @@ package com.koem.bedwars.player;
 import com.koem.bedwars.BedWars;
 import com.koem.bedwars.player.TeamManager.TEAM;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -32,10 +33,16 @@ public class PlayerManager {
 //    }
 
     public void createPlayer(Player p) {
-        players.put(p, new BWPlayer(p));
+        players.put(p, new BWPlayer(p, plugin));
     }
 
     public void removePlayer(Player p) {
+        BWPlayer BWp = players.get(p);
+        if(null != BWp.getTeam()){
+            TEAM t = BWp.getTeam();
+            Team team = plugin.getTeamManager().getTeam(t);
+            team.removePlayer();
+        }
         players.remove(p);
     }
 
@@ -61,8 +68,28 @@ public class PlayerManager {
     }
 
 
+    public HashMap<Player, BWPlayer> getBWPlayers() {
+        return players;
+    }
 
-
+    public void setPlayerColor(Player p, TEAM t) {
+        switch (t) {
+            case RED:
+                p.setPlayerListName(ChatColor.RED + p.getName());
+                break;
+            case GREEN:
+                p.setPlayerListName(ChatColor.GREEN + p.getName());
+                break;
+            case BLUE:
+                p.setPlayerListName(ChatColor.BLUE + p.getName());
+                break;
+            case YELLOW:
+                p.setPlayerListName(ChatColor.YELLOW + p.getName());
+                break;
+            default:
+                break;
+        }
+    }
 
 }
 

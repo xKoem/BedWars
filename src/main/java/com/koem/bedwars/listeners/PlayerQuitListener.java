@@ -30,9 +30,9 @@ public class PlayerQuitListener implements Listener {
         }
 
         if(plugin.getGameTask().getGameState().equals(GameTask.GAMESTATE.COUNTDOWN)) {
-            if(Bukkit.getOnlinePlayers().size() < 10) {
+            if(Bukkit.getOnlinePlayers().size() < 2) {
                 plugin.getGameTask().setGameState(GameTask.GAMESTATE.WAITING);
-                //TODO: cancel countdown
+                plugin.getGameTask().setCountdownTime((byte) 20);
             }
         }
     }

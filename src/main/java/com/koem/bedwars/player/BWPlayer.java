@@ -1,5 +1,6 @@
 package com.koem.bedwars.player;
 
+import com.koem.bedwars.BedWars;
 import org.bukkit.entity.Player;
 
 /**
@@ -14,9 +15,12 @@ public class BWPlayer {
     private short kills;
     private short deaths;
     private short finals;
+    private BedWars plugin;
 
-    public BWPlayer(Player p) {
+    public BWPlayer(Player p, BedWars plugin) {
+        this.plugin = plugin;
         this.p = p;
+        this.team = null;
         this.lastDamager = null;
         this.kills = 0;
         this.deaths = 0;
@@ -25,6 +29,8 @@ public class BWPlayer {
 
     public void setTeam(TeamManager.TEAM team) {
         this.team = team;
+        //TODO: inc team value
+        plugin.getTeamManager().getTeam(team).addPlayer();
     }
 
     public void setLastDamager(Player p) {
