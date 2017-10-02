@@ -9,7 +9,6 @@ import java.io.File;
  */
 public class Settings {
 
-    private int maxPlayers = 16;
     private final BedWars plugin;
     private FileConfiguration cfg;
 
@@ -36,7 +35,4 @@ public class Settings {
         return cfg;
     }
 
-    public int getMaxPlayers() {
-        return maxPlayers;
-    }
 }

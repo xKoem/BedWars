@@ -23,11 +23,11 @@ public class PlayerJoinListener implements Listener {
     void onPlayerJoin(PlayerJoinEvent e) {
         e.setJoinMessage(null);
         Player p = e.getPlayer();
-        Bukkit.broadcastMessage(e.getPlayer().getDisplayName() + " dolaczyl");
+        Bukkit.broadcastMessage(plugin.getSettings().getCfg().getString("PLAYER_JOINED").replace("%player%", p.getDisplayName()));
 
         plugin.getPlayerManager().createPlayer(p);
 
-        if(Bukkit.getOnlinePlayers().size() > 1) {
+        if(Bukkit.getOnlinePlayers().size() >= plugin.getSettings().getCfg().getInt("PLAYERS_TO_COUNTDOWN")) {
             plugin.getGameTask().setGameState(GameTask.GAMESTATE.COUNTDOWN);
         }
 

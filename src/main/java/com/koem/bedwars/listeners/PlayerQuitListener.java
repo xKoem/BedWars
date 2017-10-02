@@ -23,16 +23,17 @@ public class PlayerQuitListener implements Listener {
     void onPlayerQuit(PlayerQuitEvent e) {
         e.setQuitMessage(null);
         Player p = e.getPlayer();
-        Bukkit.broadcastMessage(p.getDisplayName() + " left");
-
+        Bukkit.broadcastMessage(plugin.getSettings().getCfg().getString("PLAYER_LEFT").replace("%player%", p.getDisplayName()));
         if(!(plugin.getGameTask().getGameState().equals(GameTask.GAMESTATE.FIGHT))) {
             plugin.getPlayerManager().removePlayer(p);
         }
 
         if(plugin.getGameTask().getGameState().equals(GameTask.GAMESTATE.COUNTDOWN)) {
-            if(Bukkit.getOnlinePlayers().size() < 2) {
+
+            if(plugin.getPlayerManager().getBWPlayers().size() < plugin.getSettings().getCfg().getInt("PLAYERS_TO_COUNTDOWN")) {
                 plugin.getGameTask().setGameState(GameTask.GAMESTATE.WAITING);
                 plugin.getGameTask().setCountdownTime((byte) 20);
+                //TODO: set info about pause countdown
             }
         }
     }

@@ -54,6 +54,7 @@ public class BedWars extends JavaPlugin {
         pm.registerEvents(new EntityDamageListener(this), this);
         pm.registerEvents(new PlayerQuitListener(this), this);
         pm.registerEvents(new EntityExplodeListener(this), this);
+        pm.registerEvents(new FoodLevelChangeListener(this), this);
 
     }
 

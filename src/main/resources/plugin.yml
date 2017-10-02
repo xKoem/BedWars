@@ -8,4 +8,4 @@ commands:
     aliases: [t]
   bedwars:
     description: BedWars admin command
-    alieses: [bw]
+    aliases: [bw]
