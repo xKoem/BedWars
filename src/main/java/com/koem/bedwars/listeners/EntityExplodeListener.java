@@ -22,6 +22,9 @@ public class EntityExplodeListener implements Listener{
 
     @EventHandler
     void onEntityExplode(EntityExplodeEvent e) {
+
+
+
         if(e.blockList().size() > 0) {
             Iterator<Block> iter = e.blockList().iterator();
             while (iter.hasNext()) {

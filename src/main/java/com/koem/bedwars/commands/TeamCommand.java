@@ -24,9 +24,11 @@ public class TeamCommand implements CommandExecutor{
         if(!(sender instanceof Player)) {
             return false;
         }
+
+
         Player p = (Player) sender;
 
-//        if(plugin.getGameTask().getGameState().equals(GameTask.GAMESTATE.FIGHT)) {  //TODO: comment for test only
+//        if(plugin.getGameTask().getGameState().equals(GameTask.GAMESTATE.FIGHT)) {  //TODO-DEV: comment
 //            p.sendMessage(plugin.getSettings().getCfg().getString("TEAM_CMD_ERROR_NOT_ALLOWED"));
 //            return true;
 //        }

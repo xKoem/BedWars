@@ -33,7 +33,7 @@ public class PlayerQuitListener implements Listener {
             if(plugin.getPlayerManager().getBWPlayers().size() < plugin.getSettings().getCfg().getInt("PLAYERS_TO_COUNTDOWN")) {
                 plugin.getGameTask().setGameState(GameTask.GAMESTATE.WAITING);
                 plugin.getGameTask().setCountdownTime((byte) 20);
-                //TODO: set info about pause countdown
+                Bukkit.broadcastMessage(plugin.getSettings().getCfg().getString("COUNTDOWN_PAUSED"));
             }
         }
     }

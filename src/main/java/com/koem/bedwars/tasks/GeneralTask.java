@@ -30,9 +30,8 @@ public class GeneralTask implements Runnable {
 
         if(plugin.getGameTask().getGameState().equals(GameTask.GAMESTATE.FIGHT)) {
             plugin.getGameTask().incGameTime();
-            if(plugin.getGameTask().getPlayersToRespawnSize() > 0) {
-                plugin.getGameTask().decTimePlayers();
-            }
+            plugin.getGameTask().decTimePlayers();
+
         }
 
 

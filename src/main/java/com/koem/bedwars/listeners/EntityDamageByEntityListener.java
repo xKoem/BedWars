@@ -1,6 +1,7 @@
 package com.koem.bedwars.listeners;
 
 import com.koem.bedwars.BedWars;
+import com.koem.bedwars.tasks.GameTask;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,6 +25,11 @@ public class EntityDamageByEntityListener implements Listener {
             return;
         }
 
+        if(!(plugin.getGameTask().getGameState().equals(GameTask.GAMESTATE.FIGHT))) {
+            e.setCancelled(true);
+            return;
+        }
+
         Player p = ((Player) e.getEntity());
 
         if (!(e.getDamager() instanceof Player)) {
@@ -35,6 +41,7 @@ public class EntityDamageByEntityListener implements Listener {
         Player damager = (Player) e.getDamager();
 
         if (plugin.getPlayerManager().isTheSameTeam(p, damager)) { //check if same team
+            e.setDamage(0d);
             e.setCancelled(true);
             return;
         }

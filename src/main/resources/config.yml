@@ -41,12 +41,26 @@ BED:
     Y: 80
     Z: 0
 
+#map
+MAP:
+  CENTER:
+    X: 0
+    Y: 95
+    Z: 0
+
 #Messages
+  #Commands
+    #Team
 TEAM_CMD_ERROR_BAD_USAGE: §4Poprawne uzycie /team red, blue, yellow, green
 TEAM_CMD_ERROR_NOT_ALLOWED: §4Nie możesz użyć tej komendy
-BED_WARS_CMD_ERROR_BAD_USAGE: §4Poprawne uzycie uj wi jak xDD
-CMD_ERROR_NO_ACCESS: §4Nie masz uprawnien
 TEAM_JOINED: §3Dolaczyles do Team %team%
+    #BedWars
+BED_WARS_CMD_ERROR_BAD_USAGE: §4Poprawne uzycie uj wi jak xDD
+    #all
+CMD_ERROR_NO_ACCESS: §4Nie masz uprawnien
+
+
 PLAYER_JOINED: §2%player% dolaczyl
 PLAYER_LEFT: §2%player% wyszedl
+COUNTDOWN_PAUSED: §4Uwaga odliczanie wstrzymane - za malo graczy
 PLAYER_RESPAWN_IN_5: §2Uwaga odrodzisz sie za 5 sekund

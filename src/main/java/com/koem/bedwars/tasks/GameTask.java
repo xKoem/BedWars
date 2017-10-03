@@ -67,6 +67,10 @@ public class GameTask {
     }
 
     public void decTimePlayers() {
+        if(playersToRespawn.size() < 1) {
+            return;
+        }
+
         for(Player p: playersToRespawn.keySet()) {
             playersToRespawn.replace(p, (byte)(playersToRespawn.get(p)-1));
             if(playersToRespawn.get(p) < 0) {

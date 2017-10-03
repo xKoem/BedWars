@@ -34,11 +34,17 @@ public class EntityDamageListener implements Listener {
             return;
         }
 
+        if(e.isCancelled()) {
+            e.setCancelled(true);
+            return;
+        }
+
         Player p = (Player) e.getEntity();
+
 
         System.out.println(p.getHealth() - e.getDamage());
 
-        if (p.getHealth() - e.getDamage() >= 1.0) {
+        if (p.getHealth() - e.getDamage() > 0) {
             return;
         }
 
@@ -69,12 +75,16 @@ public class EntityDamageListener implements Listener {
         }
 
         p.setGameMode(GameMode.SPECTATOR);
-        p.teleport(new Location(p.getWorld(), 0, 95, 0)); //TODO: get center map location
-        p.setHealth(20.0d);
-        p.setFoodLevel(20);
+
+        p.teleport(new Location(p.getWorld(),
+                plugin.getSettings().getCfg().getInt("MAP.CENTER.X"),
+                plugin.getSettings().getCfg().getInt("MAP.CENTER.Y"),
+                plugin.getSettings().getCfg().getInt("MAP.CENTER.Z")));
 
         plugin.getGameTask().putPlayerToRespawn(p);
         p.sendMessage(plugin.getSettings().getCfg().getString("PLAYER_RESPAWN_IN_5"));
+
+        p.setHealth(20.0d);
 
     }
 
