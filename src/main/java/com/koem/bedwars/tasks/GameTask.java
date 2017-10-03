@@ -2,6 +2,11 @@ package com.koem.bedwars.tasks;
 
 
 import com.koem.bedwars.BedWars;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
+
+import java.util.HashMap;
 
 /**
  * Created by koem on 08/07/2017.
@@ -11,6 +16,8 @@ public class GameTask {
     private final BedWars plugin;
     private byte countdownTime;
     private int gameTime;
+    private HashMap<Player,Byte> playersToRespawn;
+    private HashMap<Player, Player> playerLastDamager;  //<player, damager>
 
     public enum GAMESTATE{WAITING, COUNTDOWN, FIGHT}
 
@@ -18,6 +25,8 @@ public class GameTask {
 
     public GameTask(BedWars plugin) {
         this.plugin = plugin;
+        playersToRespawn = new HashMap<>();
+        playerLastDamager = new HashMap<>();
         countdownTime = 20;
         gameTime = 0;
 
@@ -55,5 +64,50 @@ public class GameTask {
 
     public void incGameTime() {
         this.gameTime++;
+    }
+
+    public void decTimePlayers() {
+        for(Player p: playersToRespawn.keySet()) {
+            playersToRespawn.replace(p, (byte)(playersToRespawn.get(p)-1));
+            if(playersToRespawn.get(p) < 0) {
+                playersToRespawn.remove(p);
+                System.out.println(p.getName() + " resp");
+                //respawn p
+                String team = plugin.getPlayerManager().getBWPlayer(p).getTeam().toString();
+                Location l = new Location(p.getWorld(),
+                        plugin.getSettings().getCfg().getInt("SPAWN."+ team + ".X"),
+                        plugin.getSettings().getCfg().getInt("SPAWN."+ team + ".Y"),
+                        plugin.getSettings().getCfg().getInt("SPAWN."+ team + ".Z")
+                );
+                p.teleport(l);
+                p.setGameMode(GameMode.SURVIVAL);
+                //TODO: set facing to center
+            }
+        }
+    }
+
+    public void putPlayerToRespawn(Player p) {
+        playersToRespawn.put(p, (byte) 5);
+    }
+
+    public Integer getPlayersToRespawnSize() {
+        return playersToRespawn.size();
+    }
+
+
+    public void putLastDamager(Player player, Player damager) {
+        if(playerLastDamager.get(player) != null) {
+            playerLastDamager.replace(player, damager);
+            return;
+        }
+        playerLastDamager.put(player, damager);
+    }
+
+    public Player getLastDamager(Player p) {
+        return playerLastDamager.get(p);
+    }
+
+    public void removeLastDamager(Player p) {
+        playerLastDamager.remove(p);
     }
 }

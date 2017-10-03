@@ -64,4 +64,12 @@ public class BWPlayer {
     public short getFinals() {
         return finals;
     }
+
+    public void setKills(short kills) {
+        this.kills = kills;
+    }
+
+    public void setDeaths(short deaths) {
+        this.deaths = deaths;
+    }
 }

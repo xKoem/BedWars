@@ -30,7 +30,5 @@ public class PlayerJoinListener implements Listener {
         if(Bukkit.getOnlinePlayers().size() >= plugin.getSettings().getCfg().getInt("PLAYERS_TO_COUNTDOWN")) {
             plugin.getGameTask().setGameState(GameTask.GAMESTATE.COUNTDOWN);
         }
-
-
     }
 }

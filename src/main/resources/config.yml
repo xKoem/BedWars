@@ -3,6 +3,44 @@ TEAM_SIZE: 4
 MAX_PLAYERS: 16
 PLAYERS_TO_COUNTDOWN: 2
 
+#team spawns
+SPAWN:
+  RED:
+    X: 0
+    Y: 80
+    Z: -25
+  GREEN:
+    X: 25
+    Y: 80
+    Z: 0
+  BLUE:
+    X: 0
+    Y: 80
+    Z: 25
+  YELLOW:
+    X: -25
+    Y: 80
+    Z: 0
+
+#team beds
+BED:
+  RED:
+    X: 0
+    Y: 80
+    Z: -20
+  GREEN:
+    X: 20
+    Y: 80
+    Z: 0
+  BLUE:
+    X: 0
+    Y: 80
+    Z: 20
+  YELLOW:
+    X: -25
+    Y: 80
+    Z: 0
+
 #Messages
 TEAM_CMD_ERROR_BAD_USAGE: §4Poprawne uzycie /team red, blue, yellow, green
 TEAM_CMD_ERROR_NOT_ALLOWED: §4Nie możesz użyć tej komendy
@@ -11,3 +49,4 @@ CMD_ERROR_NO_ACCESS: §4Nie masz uprawnien
 TEAM_JOINED: §3Dolaczyles do Team %team%
 PLAYER_JOINED: §2%player% dolaczyl
 PLAYER_LEFT: §2%player% wyszedl
+PLAYER_RESPAWN_IN_5: §2Uwaga odrodzisz sie za 5 sekund

@@ -1,6 +1,7 @@
 package com.koem.bedwars.listeners;
 
 import com.koem.bedwars.BedWars;
+import com.koem.bedwars.player.BWPlayer;
 import com.koem.bedwars.tasks.GameTask;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -43,22 +44,37 @@ public class EntityDamageListener implements Listener {
 
         e.setCancelled(true);
         //TODO: send eq to damager
+        //TODO: get cause and translate
 
-        Bukkit.broadcastMessage(p.getDisplayName() + " has been killed by " + e.getCause()); //TODO:TEST check for void
+
+        BWPlayer bwPlayer = plugin.getPlayerManager().getBWPlayer(p);
+
+        if(null == bwPlayer.getLastDamager()) {
+//////////////////////////////////////////no last damager - player made suicide
+
+            Bukkit.broadcastMessage(p.getDisplayName() + " has been killed by with " + e.getCause());
+
+        }else {
+
+//////////////////////////////////////////last damager exist - killed by another player
+
+            BWPlayer bwDamager = plugin.getPlayerManager().getBWPlayer(bwPlayer.getLastDamager());
+
+            Bukkit.broadcastMessage(p.getDisplayName() + " has been killed by " + bwPlayer.getLastDamager().getName() + " with " + e.getCause());
+
+            bwPlayer.setDeaths((short) (bwPlayer.getDeaths() + 1));
+            bwDamager.setKills((short) (bwDamager.getKills() + 1));
+
+            bwPlayer.clearLastDamager();
+        }
 
         p.setGameMode(GameMode.SPECTATOR);
         p.teleport(new Location(p.getWorld(), 0, 95, 0)); //TODO: get center map location
         p.setHealth(20.0d);
         p.setFoodLevel(20);
 
-
-
-
-        //TODO: check for bed
-        //TODO: wait 5s
-        //TODO: respawn
-
-
+        plugin.getGameTask().putPlayerToRespawn(p);
+        p.sendMessage(plugin.getSettings().getCfg().getString("PLAYER_RESPAWN_IN_5"));
 
     }
 

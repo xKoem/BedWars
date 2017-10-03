@@ -39,8 +39,6 @@ public class EntityDamageByEntityListener implements Listener {
             return;
         }
 
-
-        System.out.println(p.getName() + "s last damager: " + damager.getName()); //TODO:TEST
         plugin.getPlayerManager().getBWPlayer(p).setLastDamager(damager);
 
     }

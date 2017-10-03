@@ -24,14 +24,15 @@ public class GeneralTask implements Runnable {
             }
             plugin.getGameTask().setGameState(GameTask.GAMESTATE.FIGHT);
             plugin.getTeamManager().randomTeams();
-
-
             //TODO: teleport players
             return;
         }
 
         if(plugin.getGameTask().getGameState().equals(GameTask.GAMESTATE.FIGHT)) {
             plugin.getGameTask().incGameTime();
+            if(plugin.getGameTask().getPlayersToRespawnSize() > 0) {
+                plugin.getGameTask().decTimePlayers();
+            }
         }
 
 
