@@ -75,11 +75,7 @@ public class EntityDamageListener implements Listener {
         }
 
         p.setGameMode(GameMode.SPECTATOR);
-
-        p.teleport(new Location(p.getWorld(),
-                plugin.getSettings().getCfg().getInt("MAP.CENTER.X"),
-                plugin.getSettings().getCfg().getInt("MAP.CENTER.Y"),
-                plugin.getSettings().getCfg().getInt("MAP.CENTER.Z")));
+        playerTeleportToCenter(p);
 
         plugin.getGameTask().putPlayerToRespawn(p);
         p.sendMessage(plugin.getSettings().getCfg().getString("PLAYER_RESPAWN_IN_5"));
@@ -88,4 +84,20 @@ public class EntityDamageListener implements Listener {
 
     }
 
+    private void playerTeleportToCenter(Player p) {
+        Location l = new Location(p.getWorld(),
+                plugin.getSettings().getCfg().getDouble("MAP.CENTER.X"),
+                plugin.getSettings().getCfg().getDouble("MAP.CENTER.Y"),
+                plugin.getSettings().getCfg().getDouble("MAP.CENTER.Z")
+            );
+
+        String team = plugin.getPlayerManager().getBWPlayer(p).getTeam().toString();
+        Float yaw = (float) plugin.getSettings().getCfg().getDouble("SPAWN." + team + ".YAW");
+        yaw += 180f;
+        if(yaw > 180f)
+            yaw -= 360f;
+        l.setYaw(yaw);
+        l.setPitch(20.0f);
+        p.teleport(l);
+    }
 }

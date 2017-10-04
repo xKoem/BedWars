@@ -5,6 +5,7 @@ import com.koem.bedwars.BedWars;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
 
 import java.util.HashMap;
 
@@ -79,13 +80,13 @@ public class GameTask {
                 //respawn p
                 String team = plugin.getPlayerManager().getBWPlayer(p).getTeam().toString();
                 Location l = new Location(p.getWorld(),
-                        plugin.getSettings().getCfg().getInt("SPAWN."+ team + ".X"),
-                        plugin.getSettings().getCfg().getInt("SPAWN."+ team + ".Y"),
-                        plugin.getSettings().getCfg().getInt("SPAWN."+ team + ".Z")
+                        plugin.getSettings().getCfg().getDouble("SPAWN."+ team + ".X"),
+                        plugin.getSettings().getCfg().getDouble("SPAWN."+ team + ".Y"),
+                        plugin.getSettings().getCfg().getDouble("SPAWN."+ team + ".Z")
                 );
+                l.setYaw((float) plugin.getSettings().getCfg().getDouble("SPAWN."+ team + ".YAW"));
                 p.teleport(l);
                 p.setGameMode(GameMode.SURVIVAL);
-                //TODO: set facing to center
             }
         }
     }

@@ -6,22 +6,25 @@ PLAYERS_TO_COUNTDOWN: 2
 #team spawns
 SPAWN:
   RED:
-    X: 0
-    Y: 80
-    Z: -25
+    X: 0.5
+    Y: 80.0
+    Z: -25.5
+    YAW: 0.0
   GREEN:
-    X: 25
-    Y: 80
-    Z: 0
+    X: 25.5
+    Y: 80.0
+    Z: 0.5
+    YAW: 90.0
   BLUE:
-    X: 0
-    Y: 80
-    Z: 25
+    X: 0.5
+    Y: 80.0
+    Z: 25.5
+    YAW: 180.0
   YELLOW:
-    X: -25
-    Y: 80
-    Z: 0
-
+    X: -25.5
+    Y: 80.0
+    Z: 0.5
+    YAW: -90.0
 #team beds
 BED:
   RED:
