@@ -1,5 +1,6 @@
 package com.koem.bedwars.player;
 
+import com.koem.bedwars.teamUpgrades.TeamUpgrades;
 import org.bukkit.Location;
 
 import java.util.HashMap;

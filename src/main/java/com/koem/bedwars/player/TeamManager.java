@@ -1,7 +1,7 @@
 package com.koem.bedwars.player;
 
 import com.koem.bedwars.BedWars;
-import org.bukkit.ChatColor;
+import com.koem.bedwars.teamUpgrades.TeamUpgrades;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -53,15 +53,13 @@ public class TeamManager {
         Team smallestTeam = null;
         byte smallestValue = 4;
         for (Team t: teamList.values()) {
-            if(null == smallestTeam) {
-                smallestTeam = t;
-                continue;
-            }
+            System.out.println("   checked:     " + t.getTeam().toString() + "      >    "  + t.getTeamPlayers());
             if(t.getTeamPlayers() < smallestValue) {
                 smallestTeam = t;
                 smallestValue = t.getTeamPlayers();
             }
         }
+        System.out.println("!!! ADDED:     " + smallestTeam + "    >    "  + smallestValue);
 
         return smallestTeam.getTeam();
     }

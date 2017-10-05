@@ -22,6 +22,10 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     void onPlayerJoin(PlayerJoinEvent e) {
         e.setJoinMessage(null);
+        if(plugin.getGameTask().getGameState().equals(GameTask.GAMESTATE.FIGHT)){
+            return;
+        }
+
         Player p = e.getPlayer();
         Bukkit.broadcastMessage(plugin.getSettings().getCfg().getString("PLAYER_JOINED").replace("%player%", p.getDisplayName()));
 

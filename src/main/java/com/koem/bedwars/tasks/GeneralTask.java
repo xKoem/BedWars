@@ -2,7 +2,9 @@ package com.koem.bedwars.tasks;
 
 import com.koem.bedwars.BedWars;
 import com.koem.bedwars.player.BWPlayer;
+import com.koem.bedwars.playerUpgrades.ArmorManager;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -29,8 +31,9 @@ public class GeneralTask implements Runnable {
             }
             plugin.getGameTask().setGameState(GameTask.GAMESTATE.FIGHT);
             plugin.getTeamManager().randomTeams();
+            giveLeatherArmorAll();
             teleportAll();
-            //TODO: give armor
+
             return;
         }
 
@@ -43,6 +46,12 @@ public class GeneralTask implements Runnable {
 
     }
 
+    private void giveLeatherArmorAll() {
+        ArmorManager am = plugin.getArmorManager();
+        for(Player p: plugin.getPlayerManager().getBWPlayers().keySet()) {
+            am.applyLeatherArmor(p);
+        }
+    }
 
     private void teleportAll() {
         World w = Bukkit.getWorld("world");
@@ -96,6 +105,7 @@ public class GeneralTask implements Runnable {
                 default:
                     break;
             }
+            p.setGameMode(GameMode.SURVIVAL);
 
         }
 

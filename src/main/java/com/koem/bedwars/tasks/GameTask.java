@@ -86,6 +86,7 @@ public class GameTask {
                 );
                 l.setYaw((float) plugin.getSettings().getCfg().getDouble("SPAWN."+ team + ".YAW"));
                 p.teleport(l);
+
                 p.setGameMode(GameMode.SURVIVAL);
             }
         }

@@ -7,6 +7,7 @@ import com.koem.bedwars.player.PlayerManager;
 import com.koem.bedwars.player.TeamManager;
 import com.koem.bedwars.tasks.GameTask;
 import com.koem.bedwars.tasks.TaskManager;
+import com.koem.bedwars.playerUpgrades.ArmorManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -23,16 +24,17 @@ public class BedWars extends JavaPlugin {
     private PlayerManager playerManager;
     private GameTask gameTask;
     private TeamManager teamManager;
-
+    private ArmorManager armorManager;
 
     @Override
     public void onEnable() {
         registerListeners();
         registerCommands();
         settings = new Settings(this);
-        taskManager = new TaskManager(this);
+        armorManager = new ArmorManager(this);
         playerManager = new PlayerManager(this);
         teamManager = new TeamManager(this, (short) getSettings().getCfg().getInt("TEAM_SIZE"));
+        taskManager = new TaskManager(this);
         gameTask = new GameTask(this);
         Bukkit.getLogger().log(Level.INFO, "[" + this.getName() + "] Plugin zostal wlaczony");
     }
@@ -56,7 +58,8 @@ public class BedWars extends JavaPlugin {
         pm.registerEvents(new EntityExplodeListener(this), this);
         pm.registerEvents(new FoodLevelChangeListener(this), this);
         pm.registerEvents(new CreatureSpawnListener(), this);
-
+        pm.registerEvents(new WeatherChangeListener(), this);
+        pm.registerEvents(new InventoryClickListener(), this);
     }
 
     private void registerCommands() {
@@ -77,5 +80,8 @@ public class BedWars extends JavaPlugin {
     }
     public GameTask getGameTask() {
         return gameTask;
+    }
+    public ArmorManager getArmorManager() {
+        return armorManager;
     }
 }

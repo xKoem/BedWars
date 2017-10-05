@@ -6,6 +6,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 
 /**
  * Created by koem on 08/07/2017.
@@ -31,6 +33,11 @@ public class EntityDamageByEntityListener implements Listener {
         }
 
         Player p = ((Player) e.getEntity());
+
+        PlayerInventory i = p.getInventory();  //unbreakable armor
+        for(ItemStack ac : i.getArmorContents()){
+                ac.setDurability((short)-1);
+        }
 
         if (!(e.getDamager() instanceof Player)) {
             return;

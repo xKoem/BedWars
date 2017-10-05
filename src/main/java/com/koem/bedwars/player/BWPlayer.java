@@ -16,6 +16,7 @@ public class BWPlayer {
     private short deaths;
     private short finals;
     private BedWars plugin;
+    private Integer armorLvl;
 
     public BWPlayer(Player p, BedWars plugin) {
         this.plugin = plugin;
@@ -25,6 +26,7 @@ public class BWPlayer {
         this.kills = 0;
         this.deaths = 0;
         this.finals = 0;
+        this.armorLvl = 0;
     }
 
     public void setTeam(TeamManager.TEAM team) {
@@ -71,5 +73,9 @@ public class BWPlayer {
 
     public void setDeaths(short deaths) {
         this.deaths = deaths;
+    }
+
+    public Integer getArmorLvl() {
+        return armorLvl;
     }
 }
