@@ -72,7 +72,7 @@ public class BedWars extends JavaPlugin {
     public Settings getSettings() {
         return settings;
     }
-    public TeamManager getTeamManager() {
+    public TeamManager getTeamManager() { 
         return teamManager;
     }
     public PlayerManager getPlayerManager() {
