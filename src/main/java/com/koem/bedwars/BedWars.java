@@ -70,24 +70,18 @@ public class BedWars extends JavaPlugin {
 
 
     public Settings getSettings() {
-        if (settings == null) settings = new Settings(this);
         return settings;
     }
-    public TeamManager getTeamManager() {
-        if (teamManager == null)
-            teamManager = new TeamManager(this, (short) getSettings().getCfg().getInt("TEAM_SIZE")); 
+    public TeamManager getTeamManager() { 
         return teamManager;
     }
     public PlayerManager getPlayerManager() {
-        //if (playerManager == null) playerManager = new PlayerManager(this);
         return playerManager;
     }
     public GameTask getGameTask() {
-        if (gameTask == null) gameTask = new GameTask(this);
         return gameTask;
     }
     public ArmorManager getArmorManager() {
-        if (armorManager == null) armorManager = new ArmorManager(this);
         return armorManager;
     }
 }
