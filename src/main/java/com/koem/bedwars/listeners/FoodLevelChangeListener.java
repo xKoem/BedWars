@@ -19,7 +19,6 @@ public class FoodLevelChangeListener implements Listener{
         if (!(e.getEntity() instanceof Player)) {
             return;
         }
-        System.out.println("food lvl changed");
         e.setFoodLevel(20);
     }
 

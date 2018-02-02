@@ -1,7 +1,7 @@
 #Main Settings
 TEAM_SIZE: 4
 MAX_PLAYERS: 16
-PLAYERS_TO_COUNTDOWN: 2
+PLAYERS_TO_COUNTDOWN: 3
 
 #team spawns
 SPAWN:
@@ -50,6 +50,33 @@ MAP:
     X: 0
     Y: 95
     Z: 0
+
+#Y == leg position!!!!
+#diamonds - any amount
+DIAMOND:
+  D1:
+    X: 15.5
+    Y: 80.0
+    Z: 15.5
+  D2:
+    X: -14.5
+    Y: 80.0
+    Z: 15.5
+  D3:
+    X: 15.5
+    Y: 80.0
+    Z: -14.5
+  D4:
+    X: -14.5
+    Y: 80.0
+    Z: -14.5
+
+#emeralds - any amount
+EMERALD:
+  E1:
+    X: 0.5
+    Y: 80.0
+    Z: 0.5
 
 #Messages
   #Commands

@@ -1,6 +1,7 @@
 package com.koem.bedwars.tasks;
 
 import com.koem.bedwars.BedWars;
+import com.koem.bedwars.itemdroppers.IslandDropper;
 import com.koem.bedwars.player.BWPlayer;
 import com.koem.bedwars.playerUpgrades.ArmorManager;
 import org.bukkit.Bukkit;
@@ -22,6 +23,11 @@ public class GeneralTask implements Runnable {
 
     @Override
     public void run() {
+        //plugin.getIslandDroppersManager().generateIslandDroppers();
+//
+        for(IslandDropper islandDropper :plugin.getIslandDroppersManager().getIslandDroppers()) {
+            islandDropper.countdownToDrop();
+        }
 
         if(plugin.getGameTask().getGameState().equals(GameTask.GAMESTATE.COUNTDOWN)){
             System.out.println(plugin.getGameTask().getGameState().name());

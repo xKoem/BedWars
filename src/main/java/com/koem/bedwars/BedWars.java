@@ -2,6 +2,7 @@ package com.koem.bedwars;
 
 import com.koem.bedwars.commands.BedWarsCommand;
 import com.koem.bedwars.commands.TeamCommand;
+import com.koem.bedwars.itemdroppers.IslandDroppersManager;
 import com.koem.bedwars.listeners.*;
 import com.koem.bedwars.player.PlayerManager;
 import com.koem.bedwars.player.TeamManager;
@@ -9,6 +10,7 @@ import com.koem.bedwars.tasks.GameTask;
 import com.koem.bedwars.tasks.TaskManager;
 import com.koem.bedwars.playerUpgrades.ArmorManager;
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -25,6 +27,7 @@ public class BedWars extends JavaPlugin {
     private GameTask gameTask;
     private TeamManager teamManager;
     private ArmorManager armorManager;
+    private IslandDroppersManager islandDroppersManager;
 
     @Override
     public void onEnable() {
@@ -36,6 +39,7 @@ public class BedWars extends JavaPlugin {
         teamManager = new TeamManager(this, (short) getSettings().getCfg().getInt("TEAM_SIZE"));
         taskManager = new TaskManager(this);
         gameTask = new GameTask(this);
+        islandDroppersManager = new IslandDroppersManager(this);
         Bukkit.getLogger().log(Level.INFO, "[" + this.getName() + "] Plugin zostal wlaczony");
     }
 
@@ -60,6 +64,7 @@ public class BedWars extends JavaPlugin {
         pm.registerEvents(new CreatureSpawnListener(), this);
         pm.registerEvents(new WeatherChangeListener(), this);
         pm.registerEvents(new InventoryClickListener(), this);
+        pm.registerEvents(new EntityPickupItemListener(), this);
     }
 
     private void registerCommands() {
@@ -67,8 +72,19 @@ public class BedWars extends JavaPlugin {
         this.getCommand("bedwars").setExecutor(new BedWarsCommand(this));
     }
 
+    private void noDaylightCycle() {
+        World w = Bukkit.getWorld("world");
+        w.setGameRuleValue("doMobSpawning", "false");
+        w.setGameRuleValue("keepInventory", "false");
+        w.setGameRuleValue("announceAdvancements", "false");
+        w.setGameRuleValue("naturalRegeneration", "true");
+        w.setGameRuleValue("doDaylightCycle", "false");
+        w.setTime(6000);
+    }
 
-
+    public IslandDroppersManager getIslandDroppersManager() {
+        return islandDroppersManager;
+    }
     public Settings getSettings() {
         return settings;
     }
