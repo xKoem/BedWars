@@ -3,6 +3,7 @@ package com.koem.bedwars;
 import com.koem.bedwars.commands.BedWarsCommand;
 import com.koem.bedwars.commands.TeamCommand;
 import com.koem.bedwars.itemdroppers.IslandDroppersManager;
+import com.koem.bedwars.itemdroppers.MainDropperManager;
 import com.koem.bedwars.listeners.*;
 import com.koem.bedwars.player.PlayerManager;
 import com.koem.bedwars.player.TeamManager;
@@ -11,9 +12,12 @@ import com.koem.bedwars.tasks.TaskManager;
 import com.koem.bedwars.playerUpgrades.ArmorManager;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Item;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.List;
 import java.util.logging.Level;
 
 /**
@@ -28,6 +32,7 @@ public class BedWars extends JavaPlugin {
     private TeamManager teamManager;
     private ArmorManager armorManager;
     private IslandDroppersManager islandDroppersManager;
+    private MainDropperManager mainDropperManager;
 
     @Override
     public void onEnable() {
@@ -36,10 +41,17 @@ public class BedWars extends JavaPlugin {
         settings = new Settings(this);
         armorManager = new ArmorManager(this);
         playerManager = new PlayerManager(this);
+
+        removeItems();
+        islandDroppersManager = new IslandDroppersManager(this);
+        mainDropperManager = new MainDropperManager(this);
+
         teamManager = new TeamManager(this, (short) getSettings().getCfg().getInt("TEAM_SIZE"));
         taskManager = new TaskManager(this);
         gameTask = new GameTask(this);
-        islandDroppersManager = new IslandDroppersManager(this);
+
+
+        noDaylightCycle();
         Bukkit.getLogger().log(Level.INFO, "[" + this.getName() + "] Plugin zostal wlaczony");
     }
 
@@ -82,6 +94,17 @@ public class BedWars extends JavaPlugin {
         w.setTime(6000);
     }
 
+    private void removeItems() {
+        World world = getServer().getWorld("world");//get the world
+        List<Entity> entList = world.getEntities();//get all entities in the world
+
+        for(Entity current : entList) {//loop through the list
+            if (current instanceof Item) {//make sure we aren't deleting mobs/players
+                current.remove();//remove it
+            }
+        }
+    }
+
     public IslandDroppersManager getIslandDroppersManager() {
         return islandDroppersManager;
     }
@@ -99,5 +122,8 @@ public class BedWars extends JavaPlugin {
     }
     public ArmorManager getArmorManager() {
         return armorManager;
+    }
+    public MainDropperManager getMainDropperManager() {
+        return mainDropperManager;
     }
 }
