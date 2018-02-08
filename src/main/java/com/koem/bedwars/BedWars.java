@@ -77,6 +77,8 @@ public class BedWars extends JavaPlugin {
         pm.registerEvents(new WeatherChangeListener(), this);
         pm.registerEvents(new InventoryClickListener(), this);
         pm.registerEvents(new EntityPickupItemListener(), this);
+        pm.registerEvents(new ItemDespawnListener(), this);
+        pm.registerEvents(new EntityDamageByBlockListener(), this);
     }
 
     private void registerCommands() {

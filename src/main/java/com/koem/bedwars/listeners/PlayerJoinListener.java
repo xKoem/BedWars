@@ -3,6 +3,7 @@ package com.koem.bedwars.listeners;
 import com.koem.bedwars.BedWars;
 import com.koem.bedwars.tasks.GameTask;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,7 +28,17 @@ public class PlayerJoinListener implements Listener {
         }
 
         Player p = e.getPlayer();
+
+        Location l = new Location(p.getWorld(),
+                plugin.getSettings().getCfg().getDouble("MAP.LOBBY.X"),
+                plugin.getSettings().getCfg().getDouble("MAP.LOBBY.Y"),
+                plugin.getSettings().getCfg().getDouble("MAP.LOBBY.Z")
+        );
+        p.teleport(l);
+
         Bukkit.broadcastMessage(plugin.getSettings().getCfg().getString("PLAYER_JOINED").replace("%player%", p.getDisplayName()));
+
+
 
         plugin.getPlayerManager().createPlayer(p);
 

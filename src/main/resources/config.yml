@@ -1,10 +1,10 @@
 #World name - "world" !!!!!!!!!!!!!!!
-
+WORLD_NAME: world
 
 #Main Settings
 TEAM_SIZE: 4
 MAX_PLAYERS: 16
-PLAYERS_TO_COUNTDOWN: 3
+PLAYERS_TO_COUNTDOWN: 2
 
 #team spawns
 SPAWN:
@@ -49,10 +49,14 @@ BED:
 
 #map
 MAP:
-  CENTER:
-    X: 0
-    Y: 95
-    Z: 0
+  CENTER:  #deathspawn
+    X: 0.5
+    Y: 95.0
+    Z: 0.5
+  LOBBY:
+    X: 4.5
+    Y: 80.0
+    Z: 4.5
 
 #Y == leg position!!!!
 #diamonds - any amount
@@ -85,7 +89,7 @@ FURNACE:
   RED:
     X: -1.5
     Y: 80.0
-    Z: 8.5
+    Z: 7.5
 
 
 #Messages

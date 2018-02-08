@@ -44,7 +44,7 @@ public class EntityDamageListener implements Listener {
 
         System.out.println(p.getHealth() - e.getDamage());
 
-        if (p.getHealth() - e.getDamage() > 0) {
+        if (p.getHealth() - e.getDamage() >= 0) {
             return;
         }
 

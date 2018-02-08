@@ -10,7 +10,7 @@ public class BWPlayer {
 
     private Player p;
     private TeamManager.TEAM team;
-    private Player lastDamager;
+    private Player lastDamager; //TODO: uuid;
     //TODO: armour lvl
     private short kills;
     private short deaths;

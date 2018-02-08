@@ -34,7 +34,7 @@ public class MainDropper {
         this.plugin = plugin;
         this.location = location;
         this.team = TeamManager.TEAM.valueOf(teamName);
-        this.location.add(0.0, 2.0, 0.0);
+        this.location.add(0.0, 0.2, 0.0);
         this.world = location.getWorld();
 
         dropChances = new HashMap<>();
@@ -51,18 +51,22 @@ public class MainDropper {
     public void dropItems() {
         Random random = new Random();
         double randNr;
+        int rand1, rand2;
         for (Material material :dropChances.keySet()) {
             randNr = random.nextDouble();
             if(dropChances.get(material)[level] >= randNr) {
+                rand1 = random.nextInt(3) -1;
+                rand2 = random.nextInt(3) -1;
                 ItemStack itemStack = new ItemStack(material);
+                Location l = location.clone();
+                l.add(rand1, 0, rand2);
                 ItemMeta itemMeta = itemStack.getItemMeta();
-
                 itemMeta.setDisplayName(ChatColor.GOLD + "Dropped");
                 List<String> s = new ArrayList<>();
-                s.add(Double.toString(randNr));
+                s.add(rand1 + " " + rand2);
                 itemMeta.setLore(s);
                 itemStack.setItemMeta(itemMeta);
-                world.dropItemNaturally(this.location, itemStack);
+                world.dropItemNaturally(l, itemStack).setVelocity(new Vector(0,0,0));
             }
         }
     }

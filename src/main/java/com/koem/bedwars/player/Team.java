@@ -17,6 +17,7 @@ public class Team {
     private Location bedLocation;
     private final byte maxTeamPlayers = 4;
     private byte teamPlayers = 0;
+    private boolean isBedDestroyed;
 
 
     public Team(TeamManager.TEAM team, Location spawnLocation, Location bedLocation, HashMap<TeamUpgrades.TEAM_UPGRADE, Integer> teamUpgrades) {
@@ -24,10 +25,17 @@ public class Team {
         this.spawnLocation = spawnLocation;
         this.bedLocation = bedLocation;
         this.teamUpgrades = teamUpgrades;
+        this.isBedDestroyed = false;
     }
 
 
+    public boolean isBedDestroyed() {
+        return isBedDestroyed;
+    }
 
+    public void setIsBedDestroyed(boolean isBedDestroyed)  {
+        this.isBedDestroyed = isBedDestroyed;
+    }
 
     public boolean isTeamFull() {
         return teamPlayers >= maxTeamPlayers;

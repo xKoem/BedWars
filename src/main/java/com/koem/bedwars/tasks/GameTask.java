@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import java.util.HashMap;
+import java.util.Set;
 
 /**
  * Created by koem on 08/07/2017.
@@ -72,7 +73,9 @@ public class GameTask {
             return;
         }
 
-        for(Player p: playersToRespawn.keySet()) {
+
+        HashMap<Player, Byte> clone = (HashMap) playersToRespawn.clone();
+        for(Player p: clone.keySet()) {
             playersToRespawn.replace(p, (byte)(playersToRespawn.get(p)-1));
             if(playersToRespawn.get(p) < 0) {
                 playersToRespawn.remove(p);

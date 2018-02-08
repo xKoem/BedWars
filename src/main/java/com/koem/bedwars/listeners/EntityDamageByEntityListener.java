@@ -36,7 +36,7 @@ public class EntityDamageByEntityListener implements Listener {
 
         PlayerInventory i = p.getInventory();  //unbreakable armor
         for(ItemStack ac : i.getArmorContents()){
-                ac.setDurability((short)-1);
+            ac.setDurability((short)-1);
         }
 
         if (!(e.getDamager() instanceof Player)) {

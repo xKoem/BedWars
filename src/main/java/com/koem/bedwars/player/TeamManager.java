@@ -32,6 +32,8 @@ public class TeamManager {
             teamList.put(t, new Team(t, l, l, teamUpgrades));
         }
 
+        spawnBeds();
+
 
     }
 
@@ -75,5 +77,14 @@ public class TeamManager {
             plugin.getPlayerManager().setPlayerColor(p.getPlayer(), p.getTeam());
 
         }
+    }
+
+    private void spawnBeds() {
+//        for(TEAM team: teamList.keySet()) {
+//
+//            Location l = new Location()
+//
+//            plugin.getSettings().getCfg().get
+//        }
     }
 }
