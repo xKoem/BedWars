@@ -3,12 +3,9 @@ package com.koem.bedwars.tasks;
 
 import com.koem.bedwars.BedWars;
 import org.bukkit.GameMode;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.bukkit.util.Vector;
 
 import java.util.HashMap;
-import java.util.Set;
 
 /**
  * Created by koem on 08/07/2017.
@@ -79,16 +76,7 @@ public class GameTask {
             playersToRespawn.replace(p, (byte)(playersToRespawn.get(p)-1));
             if(playersToRespawn.get(p) < 0) {
                 playersToRespawn.remove(p);
-                System.out.println(p.getName() + " resp");
-                //respawn p
-                String team = plugin.getPlayerManager().getBWPlayer(p).getTeam().toString();
-                Location l = new Location(p.getWorld(),
-                        plugin.getSettings().getCfg().getDouble("SPAWN."+ team + ".X"),
-                        plugin.getSettings().getCfg().getDouble("SPAWN."+ team + ".Y"),
-                        plugin.getSettings().getCfg().getDouble("SPAWN."+ team + ".Z")
-                );
-                l.setYaw((float) plugin.getSettings().getCfg().getDouble("SPAWN."+ team + ".YAW"));
-                p.teleport(l);
+                p.teleport(plugin.getTeamManager().getTeam(plugin.getPlayerManager().getBWPlayer(p).getTEAM()).getSpawnLocation());
 
                 p.setGameMode(GameMode.SURVIVAL);
             }

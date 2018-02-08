@@ -51,8 +51,12 @@ public class BWPlayer {
         return p;
     }
 
-    public TeamManager.TEAM getTeam() {
+    public TeamManager.TEAM getTEAM() {
         return team;
+    }
+
+    public Team getTeam() {
+        return plugin.getTeamManager().getTeam(team);
     }
 
     public short getKills() {

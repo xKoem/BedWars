@@ -32,13 +32,13 @@ public class ArmorManager {
 
     public void applyLeatherArmor(Player p) {
         BWPlayer bwPlayer = plugin.getPlayerManager().getBWPlayer(p);
-        Team team = plugin.getTeamManager().getTeam(bwPlayer.getTeam());
+        Team team = plugin.getTeamManager().getTeam(bwPlayer.getTEAM());
         leatherArmor.get(team.getTeam()).giveArmorToPlayer(p);
     }
 
     public void applyArmor(Player p) {
         BWPlayer bwPlayer = plugin.getPlayerManager().getBWPlayer(p);
-        //Team team = plugin.getTeamManager().getTeam(bwPlayer.getTeam());
+        //Team team = plugin.getTeamManager().getTEAM(bwPlayer.getTEAM());
         Integer lvl = bwPlayer.getArmorLvl();
         if(0 == lvl) {
             System.out.println("Tried to apply lvl 0 armor");

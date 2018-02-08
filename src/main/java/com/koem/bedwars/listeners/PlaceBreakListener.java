@@ -1,22 +1,19 @@
 package com.koem.bedwars.listeners;
 
 import com.koem.bedwars.BedWars;
+import com.koem.bedwars.player.BWPlayer;
+import com.koem.bedwars.player.Team;
+import com.koem.bedwars.tasks.GameTask;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.entity.ItemMergeEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by koem on 08/07/2017.
@@ -42,7 +39,7 @@ public class PlaceBreakListener implements Listener {
             ent.setVelocity(new Vector(0,0,0));
         }
 
-        if (e.getBlock().getType().equals(Material.BED)) {
+        if (e.getBlock().getType().equals(Material.BED_BLOCK)) {
             e.setCancelled(true);
             //TODO: maybe vips only???
         }
@@ -50,6 +47,11 @@ public class PlaceBreakListener implements Listener {
 
     @EventHandler
     void onBreak(BlockBreakEvent e) {
+        if(!plugin.getGameTask().getGameState().equals(GameTask.GAMESTATE.FIGHT)){
+            e.setCancelled(true);
+            return;
+        }
+
         if (e.getBlock().getType().equals(Material.OBSIDIAN)) {
             return;
         }
@@ -59,8 +61,21 @@ public class PlaceBreakListener implements Listener {
         if (e.getBlock().getType().equals(Material.ENDER_STONE)) {
             return;
         }
-        if (e.getBlock().getType().equals(Material.BED)) {
+        if (e.getBlock().getType().equals(Material.BED_BLOCK)) {
             //TODO: remove teams bed
+            BWPlayer bwp =  plugin.getPlayerManager().getBWPlayer(e.getPlayer());
+            if(e.getBlock().getLocation().distance(plugin.getTeamManager().getTeam(bwp.getTEAM()).getBedLocation()) < 5) {
+                e.setCancelled(true);
+                return;
+            }
+            Team t = plugin.getTeamManager().getTeam(e.getBlock().getLocation());
+            if(null == t) {
+                return;
+            }
+            t.setIsBedDestroyed(true);
+            Bukkit.broadcastMessage(plugin.getSettings().getCfg().getString("BED_DESTROYED").replace("%player%", e.getPlayer().getDisplayName()).replace("%team%", t.getTeam().name()));
+            e.setDropItems(false);
+            return;
         }
 
         e.setCancelled(true);

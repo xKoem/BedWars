@@ -44,7 +44,7 @@ public class EntityDamageListener implements Listener {
 
         System.out.println(p.getHealth() - e.getDamage());
 
-        if (p.getHealth() - e.getDamage() >= 0) {
+        if (p.getHealth() - e.getDamage() > 0) {
             return;
         }
 
@@ -77,9 +77,10 @@ public class EntityDamageListener implements Listener {
         p.setGameMode(GameMode.SPECTATOR);
         playerTeleportToCenter(p);
 
-        plugin.getGameTask().putPlayerToRespawn(p);
-        p.sendMessage(plugin.getSettings().getCfg().getString("PLAYER_RESPAWN_IN_5"));
-
+        if(!plugin.getPlayerManager().getBWPlayer(p).getTeam().isBedDestroyed()) {
+            plugin.getGameTask().putPlayerToRespawn(p);
+            p.sendMessage(plugin.getSettings().getCfg().getString("PLAYER_RESPAWN_IN_5"));
+        }
         p.setHealth(20.0d);
 
     }
@@ -91,7 +92,7 @@ public class EntityDamageListener implements Listener {
                 plugin.getSettings().getCfg().getDouble("MAP.CENTER.Z")
             );
 
-        String team = plugin.getPlayerManager().getBWPlayer(p).getTeam().toString();
+        String team = plugin.getPlayerManager().getBWPlayer(p).getTEAM().toString();
         Float yaw = (float) plugin.getSettings().getCfg().getDouble("SPAWN." + team + ".YAW");
         yaw += 180f;
         if(yaw > 180f)

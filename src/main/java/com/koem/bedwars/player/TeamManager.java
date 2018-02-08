@@ -3,6 +3,8 @@ package com.koem.bedwars.player;
 import com.koem.bedwars.BedWars;
 import com.koem.bedwars.teamUpgrades.TeamUpgrades;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -25,14 +27,32 @@ public class TeamManager {
             teamUpgrades.put(t, 0);
         }       //generating teamUpgrades map
 
-        Location l = new Location(plugin.getServer().getWorld("world"), 0, 0,0 );  ///TODO: get teams & beds locations
+
+        FileConfiguration cfg = plugin.getSettings().getCfg();
+
+
 
         teamList = new HashMap<>();
         for(TEAM t: TEAM.values()) {
-            teamList.put(t, new Team(t, l, l, teamUpgrades));
+
+
+            Float yaw = (float) plugin.getSettings().getCfg().getDouble("SPAWN."+t.name()+".YAW");
+            Location spawn = new Location(plugin.getServer().getWorld(cfg.getString("WORLD_NAME")),
+                    cfg.getDouble("SPAWN."+t.name()+".X"),
+                    cfg.getDouble("SPAWN."+t.name()+".Y"),
+                    cfg.getDouble("SPAWN."+t.name()+".Z"));
+            spawn.setYaw(yaw);
+            System.out.println(spawn);
+            Location bed = new Location(plugin.getServer().getWorld(cfg.getString("WORLD_NAME")),
+                    cfg.getDouble("BED."+t.name()+".X"),
+                    cfg.getDouble("BED."+t.name()+".Y"),
+                    cfg.getDouble("BED."+t.name()+".Z"));
+            bed.setYaw(yaw);
+
+            teamList.put(t, new Team(t, spawn, bed, teamUpgrades));
         }
 
-        spawnBeds();
+        spawnBeds();  //TODO: do wywalenia
 
 
     }
@@ -49,6 +69,14 @@ public class TeamManager {
 
     public Team getTeam(TEAM t) {
         return teamList.get(t);
+    }
+
+    public Team getTeam(Location bedLocation) {
+        for(Team t: teamList.values()) {
+            if(t.getBedLocation().distance(bedLocation) < 5)
+                return t;
+        }
+        return null;
     }
 
     public TEAM getTheSmallestTeam() {
@@ -69,22 +97,21 @@ public class TeamManager {
     public void randomTeams() {
         HashMap<Player, BWPlayer> players = plugin.getPlayerManager().getBWPlayers();
         for (BWPlayer p: players.values()) {
-            if(null != p.getTeam()) {
+            if(null != p.getTEAM()) {
                 continue;
             }
             p.setTeam(getTheSmallestTeam());
 
-            plugin.getPlayerManager().setPlayerColor(p.getPlayer(), p.getTeam());
+            plugin.getPlayerManager().setPlayerColor(p.getPlayer(), p.getTEAM());
 
         }
     }
 
     private void spawnBeds() {
-//        for(TEAM team: teamList.keySet()) {
-//
-//            Location l = new Location()
-//
-//            plugin.getSettings().getCfg().get
-//        }
+        for(TEAM team: teamList.keySet()) {
+            Location l = teamList.get(team).getBedLocation();
+            l.getBlock().setType(Material.BED_BLOCK);
+
+        }
     }
 }

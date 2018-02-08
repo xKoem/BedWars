@@ -33,17 +33,17 @@ BED:
   RED:
     X: 0
     Y: 80
-    Z: -20
+    Z: -21
   GREEN:
-    X: 20
+    X: 21
     Y: 80
     Z: 0
   BLUE:
     X: 0
     Y: 80
-    Z: 20
+    Z: 21
   YELLOW:
-    X: -25
+    X: -21
     Y: 80
     Z: 0
 
@@ -105,6 +105,7 @@ CMD_ERROR_NO_ACCESS: §4Nie masz uprawnien
 
 
 PLAYER_JOINED: §2%player% dolaczyl
+BED_DESTROYED: §2%player% zniszczyl lozko teamu %team%
 PLAYER_LEFT: §2%player% wyszedl
 COUNTDOWN_PAUSED: §4Uwaga odliczanie wstrzymane - za malo graczy
 PLAYER_RESPAWN_IN_5: §2Uwaga odrodzisz sie za 5 sekund

@@ -2,7 +2,6 @@ package com.koem.bedwars.player;
 
 import com.koem.bedwars.BedWars;
 import com.koem.bedwars.player.TeamManager.TEAM;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -38,8 +37,8 @@ public class PlayerManager {
 
     public void removePlayer(Player p) {
         BWPlayer BWp = players.get(p);
-        if(null != BWp.getTeam()){
-            TEAM t = BWp.getTeam();
+        if(null != BWp.getTEAM()){
+            TEAM t = BWp.getTEAM();
             Team team = plugin.getTeamManager().getTeam(t);
             team.removePlayer();
         }
@@ -58,9 +57,9 @@ public class PlayerManager {
         }//check if spect want to kill somebody xD
 
 
-        System.out.println("p1 team: "+ players.get(p1).getTeam().toString() + "p2 team: "+ players.get(p2).getTeam().toString());
+        System.out.println("p1 team: "+ players.get(p1).getTEAM().toString() + "p2 team: "+ players.get(p2).getTEAM().toString());
 
-        return players.get(p1).getTeam().equals(players.get(p2).getTeam());
+        return players.get(p1).getTEAM().equals(players.get(p2).getTEAM());
     }
 
     public BWPlayer getBWPlayer(Player p) {
