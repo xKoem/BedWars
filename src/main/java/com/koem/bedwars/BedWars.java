@@ -87,7 +87,7 @@ public class BedWars extends JavaPlugin {
     }
 
     private void noDaylightCycle() {
-        World w = Bukkit.getWorld("world");
+        World w = Bukkit.getWorld(getSettings().getCfg().getString("WORLD_NAME"));
         w.setGameRuleValue("doMobSpawning", "false");
         w.setGameRuleValue("keepInventory", "false");
         w.setGameRuleValue("announceAdvancements", "false");
@@ -97,7 +97,7 @@ public class BedWars extends JavaPlugin {
     }
 
     private void removeItems() {
-        World world = getServer().getWorld("world");//get the world
+        World world = getServer().getWorld(getSettings().getCfg().getString("WORLD_NAME"));//get the world
         List<Entity> entList = world.getEntities();//get all entities in the world
 
         for(Entity current : entList) {//loop through the list

@@ -60,64 +60,14 @@ public class GeneralTask implements Runnable {
         }
     }
 
-    private void teleportAll() {  //TODO: rak????
-//        World w = Bukkit.getWorld("world");
-//        Float redYaw = (float) plugin.getSettings().getCfg().getDouble("SPAWN.RED.YAW");
-//        Float greenYaw = (float) plugin.getSettings().getCfg().getDouble("SPAWN.GREEN.YAW");
-//        Float blueYaw = (float) plugin.getSettings().getCfg().getDouble("SPAWN.BLUE.YAW");
-//        Float yellowYaw = (float) plugin.getSettings().getCfg().getDouble("SPAWN.YELLOW.YAW");
-//
-//        Location redLoc = new Location(w,
-//                plugin.getSettings().getCfg().getDouble("SPAWN.RED.X"),
-//                plugin.getSettings().getCfg().getDouble("SPAWN.RED.Y"),
-//                plugin.getSettings().getCfg().getDouble("SPAWN.RED.Z")
-//        );
-//         Location greenLoc = new Location(w,
-//                plugin.getSettings().getCfg().getDouble("SPAWN.GREEN.X"),
-//                plugin.getSettings().getCfg().getDouble("SPAWN.GREEN.Y"),
-//                plugin.getSettings().getCfg().getDouble("SPAWN.GREEN.Z")
-//        );
-//         Location blueLoc = new Location(w,
-//                plugin.getSettings().getCfg().getDouble("SPAWN.BLUE.X"),
-//                plugin.getSettings().getCfg().getDouble("SPAWN.BLUE.Y"),
-//                plugin.getSettings().getCfg().getDouble("SPAWN.BLUE.Z")
-//        );
-//         Location yellowLoc = new Location(w,
-//                plugin.getSettings().getCfg().getDouble("SPAWN.YELLOW.X"),
-//                plugin.getSettings().getCfg().getDouble("SPAWN.YELLOW.Y"),
-//                plugin.getSettings().getCfg().getDouble("SPAWN.YELLOW.Z")
-//        );
-//
-//        redLoc.setYaw(redYaw);
-//        greenLoc.setYaw(greenYaw);
-//        blueLoc.setYaw(blueYaw);
-//        yellowLoc.setYaw(yellowYaw);
-
+    private void teleportAll() {
 
         for(BWPlayer bwp :plugin.getPlayerManager().getBWPlayers().values()) {
             Player p = bwp.getPlayer();
             p.teleport(plugin.getTeamManager().getTeam(bwp.getTEAM()).getSpawnLocation());
-
-//            switch (bwp.getTEAM()) {
-//                case RED:
-//                    p.teleport(redLoc);
-//                    break;
-//                case GREEN:
-//                    p.teleport(greenLoc);
-//                    break;
-//                case BLUE:
-//                    p.teleport(blueLoc);
-//                    break;
-//                case YELLOW:
-//                    p.teleport(yellowLoc);
-//                    break;
-//                default:
-//                    break;
-//            }
             p.setGameMode(GameMode.SURVIVAL);
 
         }
-
 
     }
 }

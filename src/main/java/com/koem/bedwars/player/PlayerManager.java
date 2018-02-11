@@ -24,7 +24,7 @@ public class PlayerManager {
 //    public void loadPlayers() { //TODO: load players on game start
 //        for (Player p : Bukkit.getOnlinePlayers()) {
 //            //TODO: check for team select
-//            if(p.getName().toLowerCase().equals("koem"))
+//            if(p.getDisplayName().toLowerCase().equals("koem"))
 //                players.put(p, new BWPlayer(p, TEAM.RED));
 //            else
 //                players.put(p, new BWPlayer(p, TEAM.BLUE));
@@ -74,16 +74,16 @@ public class PlayerManager {
     public void setPlayerColor(Player p, TEAM t) {
         switch (t) {
             case RED:
-                p.setPlayerListName(ChatColor.RED + p.getName());
+                p.setPlayerListName(ChatColor.RED + p.getDisplayName());
                 break;
             case GREEN:
-                p.setPlayerListName(ChatColor.GREEN + p.getName());
+                p.setPlayerListName(ChatColor.GREEN + p.getDisplayName());
                 break;
             case BLUE:
-                p.setPlayerListName(ChatColor.BLUE + p.getName());
+                p.setPlayerListName(ChatColor.BLUE + p.getDisplayName());
                 break;
             case YELLOW:
-                p.setPlayerListName(ChatColor.YELLOW + p.getName());
+                p.setPlayerListName(ChatColor.YELLOW + p.getDisplayName());
                 break;
             default:
                 break;

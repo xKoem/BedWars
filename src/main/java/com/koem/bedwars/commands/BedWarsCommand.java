@@ -55,7 +55,7 @@ public class BedWarsCommand implements CommandExecutor{
                 return true;
             }
             for(BWPlayer p :plugin.getPlayerManager().getBWPlayers().values()) {
-                System.out.println(p.getPlayer().getName() + " " +p.getTEAM() + " : " + plugin.getTeamManager().getTeam(p.getTEAM()).getTeamPlayers());
+                System.out.println(p.getPlayer().getDisplayName() + " " +p.getTEAM() + " : " + plugin.getTeamManager().getTeam(p.getTEAM()).getTeamPlayers());
             }
         }
 

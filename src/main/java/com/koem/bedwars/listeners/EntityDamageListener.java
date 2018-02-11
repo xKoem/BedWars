@@ -6,6 +6,8 @@ import com.koem.bedwars.tasks.GameTask;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -26,6 +28,9 @@ public class EntityDamageListener implements Listener {
     void onEntityDamage(EntityDamageEvent e) {
 
         if (!(e.getEntity() instanceof Player)) {
+            if(e.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_EXPLOSION)) {
+                e.setCancelled(true);
+            }
             return;
         }
 
@@ -66,7 +71,7 @@ public class EntityDamageListener implements Listener {
 
             BWPlayer bwDamager = plugin.getPlayerManager().getBWPlayer(bwPlayer.getLastDamager());
 
-            Bukkit.broadcastMessage(p.getDisplayName() + " has been killed by " + bwPlayer.getLastDamager().getName() + " with " + e.getCause());
+            Bukkit.broadcastMessage(p.getDisplayName() + " has been killed by " + bwPlayer.getLastDamager().getDisplayName() + " with " + e.getCause());
 
             bwPlayer.setDeaths((short) (bwPlayer.getDeaths() + 1));
             bwDamager.setKills((short) (bwDamager.getKills() + 1));

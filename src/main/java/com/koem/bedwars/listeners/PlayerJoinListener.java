@@ -35,7 +35,7 @@ public class PlayerJoinListener implements Listener {
                 plugin.getSettings().getCfg().getDouble("MAP.LOBBY.Z")
         );
         p.teleport(l);
-
+        p.setDisplayName(p.getName());
         Bukkit.broadcastMessage(plugin.getSettings().getCfg().getString("PLAYER_JOINED").replace("%player%", p.getDisplayName()));
 
 

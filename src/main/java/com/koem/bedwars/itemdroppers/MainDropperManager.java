@@ -23,7 +23,7 @@ public class MainDropperManager {
     private void generateMainDroppers() {
         mainDroppers = new ArrayList<>();
         FileConfiguration config = plugin.getSettings().getCfg();
-        World w = Bukkit.getWorld("world");
+        World w = Bukkit.getWorld(plugin.getSettings().getCfg().getString("WORLD_NAME"));
 
         for(String it: config.getConfigurationSection("FURNACE").getKeys(false)) {
             Location l = new Location(w,

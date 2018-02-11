@@ -20,16 +20,13 @@ public class IslandDroppersManager {
     public IslandDroppersManager(BedWars plugin) {
         this.plugin = plugin;
         generateIslandDroppers();
-//        islandDroppers = new ArrayList<>();
-//        World w = Bukkit.getWorld("world");
-//        islandDroppers.add(new IslandDropper(plugin, new Location(w ,0.5, 81, 0.5), DROPPERTYPE.DIAMIND));
     }
 
     public enum DROPPERTYPE{DIAMIND, EMERALD}
 
     public void generateIslandDroppers() {
         FileConfiguration config = plugin.getSettings().getCfg();
-        World w = Bukkit.getWorld("world");
+        World w = Bukkit.getWorld(plugin.getSettings().getCfg().getString("WORLD_NAME"));
         islandDroppers = new ArrayList<>();
        // System.out.println(config.getDouble("DIAMOND.D" +  + ".X"));
         for(String it: config.getConfigurationSection("DIAMOND").getKeys(false)) {
