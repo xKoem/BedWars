@@ -6,7 +6,9 @@ import com.koem.bedwars.itemdroppers.MainDropper;
 import com.koem.bedwars.player.BWPlayer;
 import com.koem.bedwars.playerUpgrades.ArmorManager;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 /**
  * Created by koem on 07/07/2017.
@@ -38,7 +40,7 @@ public class GeneralTask implements Runnable {
             }
             plugin.getGameTask().setGameState(GameTask.GAMESTATE.FIGHT);
             plugin.getTeamManager().randomTeams();
-            giveLeatherArmorAll();
+            giveDefaultInventory();
             teleportAll();
 
             return;
@@ -53,10 +55,12 @@ public class GeneralTask implements Runnable {
 
     }
 
-    private void giveLeatherArmorAll() {
+    private void giveDefaultInventory() {
         ArmorManager am = plugin.getArmorManager();
         for(Player p: plugin.getPlayerManager().getBWPlayers().keySet()) {
+            p.getInventory().clear();
             am.applyLeatherArmor(p);
+            p.getInventory().setItem(0, new ItemStack(Material.WOOD_SWORD));
         }
     }
 

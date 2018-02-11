@@ -68,10 +68,18 @@ public class IslandDropper {
     }
 
     public void dropItem() {
+        ItemStack itemStack;
         if(dropperType.equals(IslandDroppersManager.DROPPERTYPE.DIAMIND))
-            world.dropItemNaturally(this.dropLocation, new ItemStack(Material.DIAMOND)).setVelocity(new Vector(0,0,0));
+            itemStack = new ItemStack(Material.DIAMOND);
+//            world.dropItemNaturally(this.dropLocation, new ItemStack(Material.DIAMOND)).setVelocity(new Vector(0,0,0));
         else
-            world.dropItemNaturally(this.dropLocation, new ItemStack(Material.EMERALD)).setVelocity(new Vector(0,0,0));
+            itemStack = new ItemStack(Material.EMERALD);
+
+        ItemMeta im = itemStack.getItemMeta();
+        im.setDisplayName(ChatColor.GOLD + "Dropped");
+        itemStack.setItemMeta(im);
+
+        world.dropItemNaturally(this.dropLocation, itemStack).setVelocity(new Vector(0,0,0));
     }
 
 

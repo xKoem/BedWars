@@ -36,6 +36,15 @@ public class EntityDamageListener implements Listener {
 
         if (!plugin.getGameTask().getGameState().equals(GameTask.GAMESTATE.FIGHT)) {
             e.setCancelled(true);
+            if(e.getCause().equals(EntityDamageEvent.DamageCause.VOID) || e.getCause().equals(EntityDamageEvent.DamageCause.FALL)) {
+                Player p = (Player) e.getEntity();
+                Location l = new Location(p.getWorld(),
+                        plugin.getSettings().getCfg().getDouble("MAP.LOBBY.X"),
+                        plugin.getSettings().getCfg().getDouble("MAP.LOBBY.Y"),
+                        plugin.getSettings().getCfg().getDouble("MAP.LOBBY.Z")
+                );
+                p.teleport(l);
+            }
             return;
         }
 

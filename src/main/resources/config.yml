@@ -3,7 +3,7 @@ WORLD_NAME: world
 #Main Settings
 TEAM_SIZE: 4
 MAX_PLAYERS: 16
-PLAYERS_TO_COUNTDOWN: 2
+PLAYERS_TO_COUNTDOWN: 1
 
 #team spawns
 SPAWN:
@@ -90,7 +90,13 @@ FURNACE:
     Y: 80.0
     Z: 7.5
 
+MAX_ITEMS: #min 2 !!!!
+  DIAMOND: 8
+  EMERALD: 4
 
+SHOP_NAME:
+  MAIN: §4Main
+  UTILITY: §5Utility
 #Messages
   #Commands
     #Team

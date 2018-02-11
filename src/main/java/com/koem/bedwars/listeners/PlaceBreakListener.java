@@ -5,6 +5,7 @@ import com.koem.bedwars.player.BWPlayer;
 import com.koem.bedwars.player.Team;
 import com.koem.bedwars.tasks.GameTask;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
@@ -13,6 +14,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
 /**
@@ -37,16 +40,20 @@ public class PlaceBreakListener implements Listener {
             Entity ent = b.getWorld().spawn(b.getLocation().add(0.5,0,0.5), TNTPrimed.class);
             ((TNTPrimed) ent).setFuseTicks(80); //TODO: 60 for vip
             ent.setVelocity(new Vector(0,0,0));
+            return;
         }
 
         if (e.getBlock().getType().equals(Material.BED_BLOCK)) {
             e.setCancelled(true);
             //TODO: maybe vips only???
         }
+
+
     }
 
     @EventHandler
     void onBreak(BlockBreakEvent e) {
+        e.setDropItems(false);
         if(!plugin.getGameTask().getGameState().equals(GameTask.GAMESTATE.FIGHT)){
             e.setCancelled(true);
             return;

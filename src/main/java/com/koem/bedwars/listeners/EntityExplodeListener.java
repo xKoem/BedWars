@@ -28,9 +28,11 @@ public class EntityExplodeListener implements Listener{
             while (iter.hasNext()) {
                 Block b = iter.next();
                 if (b.getType().equals(Material.WOOL)) {
+                    b.setType(Material.AIR);
                     continue;
                 }
                 if (b.getType().equals(Material.ENDER_STONE)) {
+                    b.setType(Material.AIR);
                     continue;
                 }
                 iter.remove();

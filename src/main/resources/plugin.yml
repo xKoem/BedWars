@@ -9,3 +9,4 @@ commands:
   bedwars:
     description: BedWars admin command
     aliases: [bw]
+  shop:

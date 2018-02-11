@@ -1,6 +1,8 @@
 package com.koem.bedwars;
 
+import com.koem.bedwars.Inventory.Shop;
 import com.koem.bedwars.commands.BedWarsCommand;
+import com.koem.bedwars.commands.ShopCommand;
 import com.koem.bedwars.commands.TeamCommand;
 import com.koem.bedwars.itemdroppers.IslandDroppersManager;
 import com.koem.bedwars.itemdroppers.MainDropperManager;
@@ -33,6 +35,7 @@ public class BedWars extends JavaPlugin {
     private ArmorManager armorManager;
     private IslandDroppersManager islandDroppersManager;
     private MainDropperManager mainDropperManager;
+    private Shop shop;
 
     @Override
     public void onEnable() {
@@ -50,6 +53,7 @@ public class BedWars extends JavaPlugin {
         taskManager = new TaskManager(this);
         gameTask = new GameTask(this);
 
+        shop = new Shop(this);
 
         noDaylightCycle();
         Bukkit.getLogger().log(Level.INFO, "[" + this.getName() + "] Plugin zostal wlaczony");
@@ -58,7 +62,6 @@ public class BedWars extends JavaPlugin {
     @Override
     public void onDisable() {
         taskManager.dispose();
-
         Bukkit.getLogger().log(Level.INFO, "[" + this.getName() + "] Plugin zostal wylaczony");
     }
 
@@ -79,11 +82,14 @@ public class BedWars extends JavaPlugin {
         pm.registerEvents(new EntityPickupItemListener(), this);
         pm.registerEvents(new ItemDespawnListener(), this);
         pm.registerEvents(new EntityDamageByBlockListener(), this);
+        pm.registerEvents(new PlayerDropItemListener(), this);
+        pm.registerEvents(new ItemMergeListener(this), this);
     }
 
     private void registerCommands() {
         this.getCommand("team").setExecutor(new TeamCommand(this));
         this.getCommand("bedwars").setExecutor(new BedWarsCommand(this));
+        this.getCommand("shop").setExecutor(new ShopCommand(this));
     }
 
     private void noDaylightCycle() {
@@ -127,5 +133,8 @@ public class BedWars extends JavaPlugin {
     }
     public MainDropperManager getMainDropperManager() {
         return mainDropperManager;
+    }
+    public Shop getShop() {
+        return shop;
     }
 }
